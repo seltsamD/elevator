@@ -20,7 +20,6 @@ public class FloorCallPanel {
     void goDown(Integer nextFloor) {
         if(nextFloor < currentFloor) {
             controlPanel.addWay(currentFloor, nextFloor);
-            controlPanel.go();
         } else {
             System.out.println(String.format("You call elevator to down floor! Next floor %s must be lower then current %s", nextFloor, currentFloor));
         }

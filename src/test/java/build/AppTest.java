@@ -31,4 +31,34 @@ public class AppTest {
         building.getElevator().go();
         Assert.assertEquals(MAX_FLOOR_COUNT, building.getElevator().getCurrentFloor());
     }
+
+    @Test
+    public void goToTheTopWithTwoPeoples() throws FloorNotFoundException {
+        Building building = new Building(MAX_FLOOR_COUNT);
+        building.getFloor(1).goUp(3);
+        building.getFloor(2).goUp(4);
+        building.getElevator().go();
+        Assert.assertEquals(MAX_FLOOR_COUNT, building.getElevator().getCurrentFloor());
+    }
+
+    @Test
+    public void goToTheTopAndGoDown() throws FloorNotFoundException {
+        Building building = new Building(MAX_FLOOR_COUNT);
+        building.getFloor(1).goUp(4);
+        building.getFloor(2).goUp(3);
+        building.getFloor(4).goDown(2);
+        building.getFloor(3).goDown(2);
+        building.getElevator().go();
+    }
+
+    @Test
+    public void stopTest() throws FloorNotFoundException {
+        Building building = new Building(MAX_FLOOR_COUNT);
+        building.getFloor(1).goUp(2);
+        building.getElevator().go();
+        building.getElevator().stop();
+        Assert.assertTrue(building.getElevator().isStoped());
+        building.getElevator().stop();
+        Assert.assertFalse(building.getElevator().isStoped());
+    }
 }

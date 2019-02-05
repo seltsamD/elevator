@@ -18,10 +18,11 @@ public class Elevator {
     }
 
     public void go() {
+        currentFloor = 1;
         controlPanel.go();
     }
 
-    boolean isStop() {
+    public boolean isStoped() {
         return stop;
     }
 
@@ -30,7 +31,7 @@ public class Elevator {
     }
 
     public void stop(){
-        if (isStop()) {
+        if (isStoped()) {
             setStop(false);
             System.out.println(String.format("Elevator start moving on the floor %s", currentFloor));
         } else {
@@ -40,11 +41,11 @@ public class Elevator {
     }
 
     void openDoor() {
-        System.out.println(String.format("\tDoor was opened at the floor %s", currentFloor));
+        System.out.println(String.format("\t\tDoor was opened at the floor %s", currentFloor));
     }
 
     void closeDoor() {
-        System.out.println(String.format("\tDoor was closed", currentFloor));
+        System.out.println(String.format("\t\tDoor was closed", currentFloor));
     }
 
     ControlPanel getControlPanel() {

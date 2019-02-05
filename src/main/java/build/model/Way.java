@@ -1,5 +1,7 @@
 package build.model;
 
+import java.util.Objects;
+
 public class Way {
     private Integer fromFloor;
     private Integer toFloor;
@@ -15,5 +17,19 @@ public class Way {
 
     Integer getToFloor() {
         return toFloor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Way way = (Way) o;
+        return fromFloor.equals(way.fromFloor) &&
+                toFloor.equals(way.toFloor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fromFloor, toFloor);
     }
 }
