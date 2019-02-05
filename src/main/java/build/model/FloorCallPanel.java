@@ -1,24 +1,26 @@
 package build.model;
 
 public class FloorCallPanel {
-    private CallPanel callPanel;
-    private int currentFloor;
+    private ControlPanel controlPanel;
+    private Integer currentFloor;
 
-    public FloorCallPanel(int currentFloor) {
+    public FloorCallPanel(Integer currentFloor, ControlPanel controlPanel) {
         this.currentFloor = currentFloor;
+        this.controlPanel = controlPanel;
     }
 
-    public void goUp(int nextFloor){
+    void goUp(Integer nextFloor) {
         if(nextFloor > currentFloor) {
-            callPanel.addWay(currentFloor, nextFloor);
+            controlPanel.addWay(currentFloor, nextFloor);
         } else {
             System.out.println(String.format("You call elevator to up floor! Next floor %s must be greater then current %s", nextFloor, currentFloor));
         }
     }
 
-    public void goDown(int nextFloor){
+    void goDown(Integer nextFloor) {
         if(nextFloor < currentFloor) {
-            callPanel.addWay(currentFloor, nextFloor);
+            controlPanel.addWay(currentFloor, nextFloor);
+            controlPanel.go();
         } else {
             System.out.println(String.format("You call elevator to down floor! Next floor %s must be lower then current %s", nextFloor, currentFloor));
         }

@@ -1,37 +1,61 @@
 package build.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Elevator {
-    private CallPanel callPanel = new CallPanel();
-    private boolean stop;
-    private int currentFloor;
+    public static final Integer SPEED = 1;
+    public static final Integer HEIGHT = 4;
+    public static final Integer TIME = HEIGHT / SPEED;
 
-    public Elevator(int maxFloorCount) {
-        callPanel.addWay(1, maxFloorCount);
+
+    private ControlPanel controlPanel;
+    private boolean stop;
+    private Integer currentFloor;
+
+
+    public Elevator() {
+        controlPanel = new ControlPanel(this);
         setStop(false);
         currentFloor = 1;
     }
 
-    public boolean isStop() {
+    public void go() {
+        controlPanel.go();
+    }
+
+    boolean isStop() {
         return stop;
     }
 
-    public void setStop(boolean stop) {
+    private void setStop(boolean stop) {
         this.stop = stop;
     }
 
     public void stop(){
-        setStop(true);
-        System.out.println(String.format("Elevator is stopped on the floor %s", currentFloor));
+        if (isStop()) {
+            setStop(false);
+            System.out.println(String.format("Elevator start moving on the floor %s", currentFloor));
+        } else {
+            setStop(true);
+            System.out.println(String.format("Elevator is stopped on the floor %s", currentFloor));
+        }
     }
 
-    public void openDoor(){
-        System.out.println("Door was opened");
+    void openDoor() {
+        System.out.println(String.format("\tDoor was opened at the floor %s", currentFloor));
     }
 
-    public void closeDoor(){
-        System.out.println("Door was closed");
+    void closeDoor() {
+        System.out.println(String.format("\tDoor was closed", currentFloor));
+    }
+
+    ControlPanel getControlPanel() {
+        return controlPanel;
+    }
+
+    public Integer getCurrentFloor() {
+        return currentFloor;
+    }
+
+    void setCurrentFloor(Integer currentFloor) {
+        this.currentFloor = currentFloor;
     }
 }

@@ -13,22 +13,22 @@ public class Building {
 
     public Building(int maxFloorCount) {
         this.maxFloorCount = maxFloorCount;
+        this.elevator = new Elevator();
         this.floors = initializeFloors();
-        this.elevator = new Elevator(maxFloorCount);
     }
 
     private Map<Integer, Floor> initializeFloors() {
         Map<Integer, Floor> floors = new HashMap<>();
         for (int i = 0; i < maxFloorCount; i++) {
-            Floor floor = new Floor(i);
-            floors.put(i, floor);
+            Floor floor = new Floor(i + 1, elevator.getControlPanel());
+            floors.put(i + 1, floor);
         }
         return floors;
     }
 
     public Floor getFloor(int number) throws FloorNotFoundException {
-        Floor floor = floors.get(number) ;
-        if(null == floor){
+        Floor floor = floors.get(number);
+        if (null == floor) {
             throw new FloorNotFoundException(number);
         } else {
             return floor;

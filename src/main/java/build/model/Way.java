@@ -1,19 +1,19 @@
 package build.model;
 
 public class Way {
-    private int fromFloor;
-    private int toFloor;
+    private Integer fromFloor;
+    private Integer toFloor;
 
-    public Way(int fromFloor, int toFloor) {
+    Way(Integer fromFloor, Integer toFloor) {
         this.fromFloor = fromFloor;
         this.toFloor = toFloor;
     }
 
-    public int getFromFloor() {
+    Integer getFromFloor() {
         return fromFloor;
     }
 
-    public int getToFloor() {
+    Integer getToFloor() {
         return toFloor;
     }
 }
